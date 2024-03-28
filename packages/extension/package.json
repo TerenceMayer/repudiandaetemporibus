@@ -1,0 +1,60 @@
+{
+  "name": "ts-viewer-extension",
+  "displayName": "TS Viewer Plugin",
+  "description": "Help View Full TypeScript Interface Information",
+  "version": "0.0.1",
+  "private": true,
+  "author": "samxchen",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "url": "https://github.com/SamXChen/ts-viewer.git"
+  },
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "extensionDependencies": [
+    "vscode.typescript-language-features"
+  ],
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:vue"
+  ],
+  "contributes": {
+    "typescriptServerPlugins": [
+      {
+        "name": "ts-viewer-plugin",
+        "enableForWorkspaceTypeScriptVersions": true
+      }
+    ]
+  },
+  "scripts": {
+    "build:dts": "tsc",
+    "build:bundle": "esno ./scripts/build.ts",
+    "build": "pnpm build:bundle && pnpm build:dts",
+    "package": "vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "ts-viewer-plugin": "*",
+    "axios": "1.5.1",
+    "get-port": "7.0.0",
+    "prettier": "2.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.7.1",
+    "@types/vscode": "1.82.0",
+    "@ts-viewer/shared": "*",
+    "esbuild": "0.19.4",
+    "esno": "0.17.0",
+    "typescript": "5.2.2",
+    "vsce": "2.15.0"
+  }
+}
